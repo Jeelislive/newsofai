@@ -16,8 +16,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${spaceGrotesk.variable} h-full`}>
-      <body className="min-h-full">{children}</body>
+    <html lang="en" className={`${inter.variable} ${spaceGrotesk.variable}`}>
+      <body style={{ fontFamily: "var(--font-inter), system-ui, sans-serif" }}>{children}</body>
     </html>
   );
 }
