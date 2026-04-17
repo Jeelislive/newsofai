@@ -1,41 +1,50 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
-
 @import "tailwindcss";
 
 @theme {
-  --font-sans: var(--font-inter), system-ui, sans-serif;
+  --font-sans:  var(--font-inter), system-ui, sans-serif;
+  --font-serif: var(--font-serif), Georgia, serif;
 
-  --animate-ticker:       ticker-scroll 35s linear infinite;
-  --animate-notif:        notif-pop 0.4s cubic-bezier(0.34,1.56,0.64,1) forwards;
-  --animate-ping-slow:    ping-slow 1.5s cubic-bezier(0,0,0.2,1) infinite;
-  --animate-scan:         scan 3s linear infinite;
-  --animate-slide-up:     slide-up 0.5s ease forwards;
+  /* Claude design-system tokens */
+  --color-parchment:   #f5f4ed;
+  --color-ivory:       #faf9f5;
+  --color-sand:        #e8e6dc;
+  --color-terracotta:  #c96442;
+  --color-coral:       #d97757;
+  --color-near-black:  #141413;
+  --color-dark-surf:   #30302e;
+  --color-charcoal:    #4d4c48;
+  --color-olive:       #5e5d59;
+  --color-stone:       #87867f;
+  --color-warm-silver: #b0aea5;
+  --color-border-dim:  #f0eee6;
+  --color-border-warm: #e8e6dc;
+
+  --animate-ticker:    ticker-scroll 40s linear infinite;
+  --animate-notif:     notif-pop 0.4s cubic-bezier(0.34,1.56,0.64,1) forwards;
+  --animate-ping-slow: ping-slow 1.6s cubic-bezier(0,0,0.2,1) infinite;
+  --animate-slide-up:  slide-up 0.45s ease forwards;
 
   @keyframes ticker-scroll {
     from { transform: translateX(0); }
     to   { transform: translateX(-50%); }
   }
   @keyframes notif-pop {
-    0%   { transform: scale(0.85) translateY(-8px); opacity: 0; }
-    60%  { transform: scale(1.02) translateY(2px); }
+    0%   { transform: scale(0.88) translateY(-6px); opacity: 0; }
+    65%  { transform: scale(1.02) translateY(1px); }
     100% { transform: scale(1) translateY(0); opacity: 1; }
   }
   @keyframes ping-slow {
-    0%        { transform: scale(1); opacity: 0.8; }
-    75%, 100% { transform: scale(2.2); opacity: 0; }
-  }
-  @keyframes scan {
-    0%   { transform: translateY(-100%); }
-    100% { transform: translateY(600%); }
+    0%        { transform: scale(1); opacity: 0.9; }
+    75%, 100% { transform: scale(2.4); opacity: 0; }
   }
   @keyframes slide-up {
-    from { transform: translateY(16px); opacity: 0; }
+    from { transform: translateY(14px); opacity: 0; }
     to   { transform: translateY(0);    opacity: 1; }
   }
 }
 
-/* scrollbar only — no Tailwind equivalent */
+/* scrollbar */
 ::-webkit-scrollbar       { width: 5px; }
-::-webkit-scrollbar-track { background: #0a0a12; }
-::-webkit-scrollbar-thumb { background: #2d2d42; border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: #8b5cf6; }
+::-webkit-scrollbar-track { background: #f5f4ed; }
+::-webkit-scrollbar-thumb { background: #d1cfc5; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #c96442; }
