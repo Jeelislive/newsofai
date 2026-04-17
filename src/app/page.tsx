@@ -24,7 +24,7 @@ interface NewsItem {
   imageGradient: string;
 }
 
-// ─── News Data ────────────────────────────────────────────────────────────────
+// ─── Data ─────────────────────────────────────────────────────────────────────
 
 const NEWS_DATA: NewsItem[] = [
   {
@@ -45,7 +45,7 @@ const NEWS_DATA: NewsItem[] = [
     id: 2,
     title: "Claude API Now Supports Real-Time Streaming with 10x Lower Latency",
     summary:
-      "New streaming architecture delivers first token in under 200ms. The improved infrastructure supports parallel tool calls, structured JSON output, and live function streaming — making Claude faster than ever for production apps.",
+      "New streaming architecture delivers first token in under 200ms. Supports parallel tool calls, structured JSON output, and live function streaming.",
     category: "api",
     priority: "high",
     timestamp: new Date(Date.now() - 1000 * 60 * 22),
@@ -59,7 +59,7 @@ const NEWS_DATA: NewsItem[] = [
     id: 3,
     title: "Constitutional AI 2.0: Anthropic Publishes Research on Scalable Oversight",
     summary:
-      "Groundbreaking paper on Constitutional AI 2.0 shows how AI systems can reliably self-critique and improve alignment at scale. The technique reduces harmful outputs by 94% while maintaining full helpfulness.",
+      "Groundbreaking paper shows how AI systems can reliably self-critique and improve alignment at scale. Reduces harmful outputs by 94% while maintaining full helpfulness.",
     category: "safety",
     priority: "high",
     timestamp: new Date(Date.now() - 1000 * 60 * 60 * 2),
@@ -72,7 +72,7 @@ const NEWS_DATA: NewsItem[] = [
     id: 4,
     title: "Claude.ai Launches Projects — Persistent Memory Across Conversations",
     summary:
-      "Claude.ai's new Projects feature lets users create shared knowledge spaces that persist across sessions. Teams can upload documents, codebases, and context that Claude remembers indefinitely.",
+      "New Projects feature lets users create shared knowledge spaces that persist across sessions. Upload documents, codebases, and context Claude remembers indefinitely.",
     category: "product",
     priority: "high",
     timestamp: new Date(Date.now() - 1000 * 60 * 60 * 5),
@@ -85,7 +85,7 @@ const NEWS_DATA: NewsItem[] = [
     id: 5,
     title: "Claude 3.7 Sonnet Extended Thinking: 100K Token Reasoning Window",
     summary:
-      "Anthropic expands Claude 3.7 Sonnet's extended thinking capability to support up to 100,000 thinking tokens — allowing deep exploration, multi-hypothesis testing, and extended logical chains.",
+      "Anthropic expands Claude 3.7 Sonnet's extended thinking to 100,000 thinking tokens — enabling deep exploration and multi-hypothesis testing on complex problems.",
     category: "model",
     priority: "normal",
     timestamp: new Date(Date.now() - 1000 * 60 * 60 * 9),
@@ -98,7 +98,7 @@ const NEWS_DATA: NewsItem[] = [
     id: 6,
     title: "Tool Use 2.0: Claude Can Now Control Computers Natively",
     summary:
-      "Claude's computer use capability has been upgraded with vision-based navigation, multi-step automation, and error recovery. The model can browse the web, write and execute code, and interact with any GUI application.",
+      "Upgraded with vision-based navigation, multi-step automation, and error recovery. Claude can browse the web, write and execute code, and interact with any GUI.",
     category: "feature",
     priority: "high",
     timestamp: new Date(Date.now() - 1000 * 60 * 60 * 14),
@@ -111,20 +111,20 @@ const NEWS_DATA: NewsItem[] = [
     id: 7,
     title: "Anthropic Model Spec Updated: New Guidelines on Autonomy and Agency",
     summary:
-      "Anthropic releases a major update to the Claude Model Spec, adding detailed guidelines on AI autonomy, multi-agent coordination, and long-horizon task execution.",
+      "Major update to the Claude Model Spec adds detailed guidelines on AI autonomy, multi-agent coordination, and long-horizon task execution.",
     category: "safety",
     priority: "normal",
     timestamp: new Date(Date.now() - 1000 * 60 * 60 * 20),
     readTime: 7,
     tags: ["Model Spec", "Safety", "Alignment"],
     source: "Anthropic",
-    imageGradient: "from-slate-600 via-zinc-700 to-neutral-800",
+    imageGradient: "from-slate-500 via-zinc-600 to-neutral-700",
   },
   {
     id: 8,
     title: "Claude Haiku 3.5 Now Free on Claude.ai — Fastest Model Ever",
     summary:
-      "Anthropic makes Claude Haiku 3.5 available free for all users on Claude.ai. At 200 tokens/second, it's the fastest production AI model available — perfect for instant responses and rapid prototyping.",
+      "Claude Haiku 3.5 available free for all users on Claude.ai. At 200 tokens/second, it's the fastest production AI model for instant responses and rapid prototyping.",
     category: "product",
     priority: "normal",
     timestamp: new Date(Date.now() - 1000 * 60 * 60 * 28),
@@ -135,39 +135,63 @@ const NEWS_DATA: NewsItem[] = [
   },
 ];
 
-const CATEGORY_CONFIG = {
-  model:    { label: "Model",    color: "bg-violet-500/15 text-violet-300 border border-violet-500/20" },
-  feature:  { label: "Feature",  color: "bg-orange-500/15 text-orange-300 border border-orange-500/20" },
-  api:      { label: "API",      color: "bg-amber-500/15  text-amber-300  border border-amber-500/20"  },
-  research: { label: "Research", color: "bg-emerald-500/15 text-emerald-300 border border-emerald-500/20" },
-  safety:   { label: "Safety",   color: "bg-teal-500/15   text-teal-300   border border-teal-500/20"   },
-  product:  { label: "Product",  color: "bg-blue-500/15   text-blue-300   border border-blue-500/20"   },
+const CAT = {
+  model:    { label: "Model",    bg: "bg-violet-500/20", text: "text-violet-300", border: "border border-violet-500/30" },
+  feature:  { label: "Feature",  bg: "bg-orange-500/20", text: "text-orange-300", border: "border border-orange-500/30" },
+  api:      { label: "API",      bg: "bg-amber-500/20",  text: "text-amber-300",  border: "border border-amber-500/30"  },
+  research: { label: "Research", bg: "bg-emerald-500/20",text: "text-emerald-300",border: "border border-emerald-500/30"},
+  safety:   { label: "Safety",   bg: "bg-teal-500/20",   text: "text-teal-300",   border: "border border-teal-500/30"  },
+  product:  { label: "Product",  bg: "bg-blue-500/20",   text: "text-blue-300",   border: "border border-blue-500/30"  },
 };
 
-const TICKER_ITEMS = [
+const TICKER = [
   "🔥 Claude Opus 4 breaks MMLU record",
   "⚡ API latency drops to 200ms",
   "🛡️ Constitutional AI 2.0 published",
   "🚀 Claude.ai Projects now live",
   "🧠 100K token thinking window",
-  "💻 Computer use upgraded",
-  "📋 Model Spec updated",
-  "🆓 Haiku 3.5 free for all",
+  "💻 Computer use 2.0 upgraded",
+  "📋 Model Spec v2 released",
+  "🆓 Haiku 3.5 free for all users",
 ];
 
-// ─── Components ───────────────────────────────────────────────────────────────
+// ─── Sub-components ───────────────────────────────────────────────────────────
+
+function Pill({ cat }: { cat: keyof typeof CAT }) {
+  const c = CAT[cat];
+  return (
+    <span className={`cat-pill ${c.bg} ${c.text} ${c.border}`}>{c.label}</span>
+  );
+}
+
+function PriorityBadge({ p }: { p: NewsItem["priority"] }) {
+  if (p === "breaking")
+    return (
+      <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-bold tracking-widest uppercase bg-red-500/20 text-red-400 border border-red-500/40">
+        <span className="live-dot" style={{ width: 6, height: 6 }} />
+        Breaking
+      </span>
+    );
+  if (p === "high")
+    return (
+      <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-bold tracking-widest uppercase bg-orange-500/15 text-orange-400 border border-orange-500/30">
+        <Zap size={9} />Hot
+      </span>
+    );
+  return null;
+}
 
 function LiveTicker() {
-  const items = [...TICKER_ITEMS, ...TICKER_ITEMS];
+  const doubled = [...TICKER, ...TICKER];
   return (
-    <div className="relative overflow-hidden bg-[#0d0d14] border-y border-[#1f1f2e] py-2.5">
-      <div className="absolute left-0 top-0 bottom-0 w-20 z-10 bg-gradient-to-r from-[#0d0d14] to-transparent pointer-events-none" />
-      <div className="absolute right-0 top-0 bottom-0 w-20 z-10 bg-gradient-to-l from-[#0d0d14] to-transparent pointer-events-none" />
-      <div className="flex animate-ticker whitespace-nowrap" style={{ width: "max-content" }}>
-        {items.map((item, i) => (
-          <span key={i} className="flex items-center gap-1 mx-8 text-xs font-medium text-[#9ca3af]">
+    <div className="relative overflow-hidden border-y border-[#1f1f2e]" style={{ background: "#0a0a12" }}>
+      <div className="absolute left-0 top-0 bottom-0 w-16 z-10 pointer-events-none" style={{ background: "linear-gradient(to right, #0a0a12, transparent)" }} />
+      <div className="absolute right-0 top-0 bottom-0 w-16 z-10 pointer-events-none" style={{ background: "linear-gradient(to left, #0a0a12, transparent)" }} />
+      <div className="py-2.5 flex" style={{ animation: "ticker-scroll 35s linear infinite", width: "max-content" }}>
+        {doubled.map((item, i) => (
+          <span key={i} className="flex items-center mx-8 text-xs font-medium" style={{ color: "#9ca3af", whiteSpace: "nowrap" }}>
             {item}
-            <span className="w-1 h-1 rounded-full bg-[#2d2d42] mx-4 inline-block" />
+            <span className="inline-block w-1 h-1 rounded-full mx-6" style={{ background: "#2d2d42" }} />
           </span>
         ))}
       </div>
@@ -175,180 +199,188 @@ function LiveTicker() {
   );
 }
 
-function NotificationBadge({ count }: { count: number }) {
+function NotifBadge({ count }: { count: number }) {
   return (
-    <span className="absolute -top-1 -right-1 min-w-[18px] h-[18px] px-1 rounded-full bg-orange-500 text-white text-[10px] font-bold flex items-center justify-center leading-none">
+    <span className="absolute -top-1 -right-1 min-w-[18px] h-[18px] px-1 rounded-full bg-orange-500 text-white text-[10px] font-bold flex items-center justify-center">
       {count}
     </span>
   );
 }
 
-function CategoryPill({ category }: { category: keyof typeof CATEGORY_CONFIG }) {
-  const cfg = CATEGORY_CONFIG[category];
-  return <span className={`category-pill ${cfg.color}`}>{cfg.label}</span>;
-}
+function FeaturedCard({ item }: { item: NewsItem }) {
+  return (
+    <div
+      className={`relative overflow-hidden rounded-2xl cursor-pointer group min-h-[360px] flex flex-col justify-end bg-gradient-to-br ${item.imageGradient}`}
+      style={{ border: "1px solid rgba(255,255,255,0.08)" }}
+    >
+      {/* overlays */}
+      <div className="absolute inset-0 bg-black/30" />
+      <div
+        className="absolute inset-0 opacity-[0.07]"
+        style={{
+          backgroundImage: "linear-gradient(rgba(255,255,255,0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.15) 1px, transparent 1px)",
+          backgroundSize: "44px 44px",
+        }}
+      />
+      <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.3) 50%, transparent 100%)" }} />
 
-function PriorityBadge({ priority }: { priority: NewsItem["priority"] }) {
-  if (priority === "breaking")
-    return (
-      <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-bold tracking-widest uppercase bg-red-500/15 text-red-400 border border-red-500/30">
-        <span className="live-dot scale-75" />
-        Breaking
-      </span>
-    );
-  if (priority === "high")
-    return (
-      <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-bold tracking-widest uppercase bg-orange-500/10 text-orange-400 border border-orange-500/20">
-        <Zap size={9} strokeWidth={2.5} />
-        Hot
-      </span>
-    );
-  return null;
+      {/* top badges */}
+      <div className="absolute top-5 left-5 flex items-center gap-2 z-10">
+        <span className="px-3 py-1 rounded-full text-[11px] font-bold text-white tracking-widest uppercase" style={{ background: "rgba(0,0,0,0.45)", border: "1px solid rgba(255,255,255,0.18)", backdropFilter: "blur(8px)" }}>
+          Featured
+        </span>
+        <PriorityBadge p={item.priority} />
+      </div>
+
+      {/* content */}
+      <div className="relative z-10 p-6 sm:p-8">
+        <Pill cat={item.category} />
+        <h2 className="mt-3 mb-2 text-2xl sm:text-3xl font-extrabold text-white leading-tight" style={{ fontFamily: "'Space Grotesk', sans-serif", textShadow: "0 2px 20px rgba(0,0,0,0.5)" }}>
+          {item.title}
+        </h2>
+        <p className="text-sm text-white/65 leading-relaxed line-clamp-2 mb-5 max-w-2xl">{item.summary}</p>
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-4 text-xs text-white/45">
+            <span className="flex items-center gap-1"><Clock size={10} />{item.readTime}m read</span>
+            <span>{formatDistanceToNow(item.timestamp, { addSuffix: true })}</span>
+            <span className="flex items-center gap-1"><Activity size={10} className="text-violet-400" />{item.source}</span>
+          </div>
+          <button
+            className="flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold text-white transition-all group/btn"
+            style={{ background: "rgba(255,255,255,0.12)", border: "1px solid rgba(255,255,255,0.22)", backdropFilter: "blur(12px)" }}
+            onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(255,255,255,0.2)")}
+            onMouseLeave={(e) => (e.currentTarget.style.background = "rgba(255,255,255,0.12)")}
+          >
+            Read Story <ArrowRight size={14} />
+          </button>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 function NewsCard({ item, index }: { item: NewsItem; index: number }) {
   const [visible, setVisible] = useState(false);
   useEffect(() => {
-    const t = setTimeout(() => setVisible(true), index * 80);
+    const t = setTimeout(() => setVisible(true), index * 70);
     return () => clearTimeout(t);
   }, [index]);
 
   return (
-    <article
-      className={`news-card bg-[#111118] cursor-pointer group transition-all duration-500 ${
-        visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-      }`}
+    <div
+      className={`news-card cursor-pointer transition-all duration-500 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"}`}
+      style={{ background: "#111118", transitionDelay: `${index * 55}ms` }}
     >
-      {/* Gradient image area */}
-      <div className={`relative h-40 bg-gradient-to-br ${item.imageGradient} overflow-hidden`}>
+      {/* image area */}
+      <div className={`relative h-44 bg-gradient-to-br ${item.imageGradient} overflow-hidden`}>
         <div className="absolute inset-0 bg-black/20" />
+        {/* grid lines */}
         <div
-          className="absolute inset-0 opacity-10"
+          className="absolute inset-0 opacity-[0.08]"
           style={{
-            backgroundImage:
-              "linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)",
-            backgroundSize: "30px 30px",
+            backgroundImage: "linear-gradient(rgba(255,255,255,0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.2) 1px, transparent 1px)",
+            backgroundSize: "28px 28px",
           }}
         />
-        <div className="absolute top-3 left-3 flex items-center gap-2">
+        {/* scan line */}
+        <div className="absolute inset-x-0 h-px bg-white/30 scan-line opacity-20" />
+        {/* bottom fade */}
+        <div className="absolute inset-0" style={{ background: "linear-gradient(to top, #111118 0%, transparent 55%)" }} />
+
+        {/* badges */}
+        <div className="absolute top-3 left-3 flex items-center gap-2 z-10">
           {item.isNew && (
-            <span className="px-2 py-0.5 rounded-full bg-black/40 backdrop-blur text-[10px] font-bold text-white tracking-widest uppercase border border-white/20 flex items-center gap-1">
-              <span className="live-dot scale-50" />
+            <span className="flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[10px] font-bold text-white tracking-widest uppercase" style={{ background: "rgba(0,0,0,0.5)", border: "1px solid rgba(255,255,255,0.2)", backdropFilter: "blur(8px)" }}>
+              <span className="live-dot" style={{ width: 6, height: 6 }} />
               New
             </span>
           )}
-          <PriorityBadge priority={item.priority} />
+          <PriorityBadge p={item.priority} />
         </div>
-        <div className="absolute bottom-3 right-3 w-8 h-8 rounded-lg bg-black/30 backdrop-blur flex items-center justify-center border border-white/10">
-          <Sparkles size={14} className="text-white/80" />
+
+        {/* sparkle icon */}
+        <div className="absolute bottom-3 right-3 w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: "rgba(0,0,0,0.35)", border: "1px solid rgba(255,255,255,0.12)", backdropFilter: "blur(8px)" }}>
+          <Sparkles size={13} className="text-white/75" />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-t from-[#111118] via-transparent to-transparent opacity-60" />
       </div>
 
-      {/* Content */}
+      {/* body */}
       <div className="p-5">
         <div className="flex items-center justify-between mb-3">
-          <CategoryPill category={item.category} />
-          <div className="flex items-center gap-3 text-[#6b7280] text-xs">
-            <span className="flex items-center gap-1">
-              <Clock size={10} />
-              {item.readTime}m
-            </span>
+          <Pill cat={item.category} />
+          <div className="flex items-center gap-2.5 text-[11px]" style={{ color: "#6b7280" }}>
+            <span className="flex items-center gap-1"><Clock size={10} />{item.readTime}m</span>
             <span>{formatDistanceToNow(item.timestamp, { addSuffix: true })}</span>
           </div>
         </div>
-        <h2 className="text-[15px] font-bold text-[#f1f0ff] leading-snug mb-2.5 group-hover:text-white transition-colors line-clamp-2" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
-          {item.title}
-        </h2>
-        <p className="text-[13px] text-[#9ca3af] leading-relaxed line-clamp-3 mb-4">{item.summary}</p>
-        <div className="flex flex-wrap gap-1.5 mb-4">
-          {item.tags.map((tag) => (
-            <span key={tag} className="inline-flex items-center gap-0.5 px-2 py-0.5 rounded text-[10px] font-medium bg-[#1a1a28] text-[#6b7280] border border-[#2d2d42]">
-              <Hash size={8} />
-              {tag}
-            </span>
-          ))}
-        </div>
-        <div className="flex items-center justify-between pt-3 border-t border-[#1f1f2e]">
-          <span className="text-[11px] text-[#6b7280] flex items-center gap-1.5">
-            <Activity size={10} className="text-violet-400" />
-            {item.source}
-          </span>
-          <button className="flex items-center gap-1 text-[12px] font-semibold text-violet-400 hover:text-violet-300 transition-colors group/btn">
-            Read more <ChevronRight size={13} className="group-hover/btn:translate-x-0.5 transition-transform" />
-          </button>
-        </div>
-      </div>
-    </article>
-  );
-}
 
-function FeaturedCard({ item }: { item: NewsItem }) {
-  return (
-    <article
-      className={`news-card bg-gradient-to-br ${item.imageGradient} relative overflow-hidden cursor-pointer group min-h-[360px] flex flex-col justify-end`}
-    >
-      <div className="absolute inset-0 bg-black/25" />
-      <div
-        className="absolute inset-0 opacity-5"
-        style={{
-          backgroundImage:
-            "linear-gradient(rgba(255,255,255,0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.15) 1px, transparent 1px)",
-          backgroundSize: "40px 40px",
-        }}
-      />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
-
-      <div className="absolute top-5 left-5 flex items-center gap-2">
-        <span className="px-3 py-1 rounded-full bg-black/40 backdrop-blur text-[11px] font-bold text-white tracking-widest uppercase border border-white/20">
-          Featured
-        </span>
-        <PriorityBadge priority={item.priority} />
-      </div>
-
-      <div className="relative p-6 z-10">
-        <CategoryPill category={item.category} />
         <h2
-          className="text-2xl font-extrabold text-white leading-tight mt-3 mb-2"
-          style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+          className="text-sm font-bold leading-snug mb-2.5 line-clamp-2 transition-colors"
+          style={{ color: "#f1f0ff", fontFamily: "'Space Grotesk', sans-serif", fontSize: "0.9375rem" }}
         >
           {item.title}
         </h2>
-        <p className="text-sm text-white/70 leading-relaxed line-clamp-2 mb-4">{item.summary}</p>
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-3 text-white/50 text-xs">
-            <span className="flex items-center gap-1"><Clock size={10} />{item.readTime}m read</span>
-            <span>{formatDistanceToNow(item.timestamp, { addSuffix: true })}</span>
-          </div>
-          <button className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/10 hover:bg-white/20 backdrop-blur border border-white/20 text-white text-xs font-semibold transition-all group/btn">
-            Read Story <ArrowRight size={13} className="group-hover/btn:translate-x-0.5 transition-transform" />
+
+        <p className="text-[13px] leading-relaxed line-clamp-3 mb-4" style={{ color: "#9ca3af" }}>
+          {item.summary}
+        </p>
+
+        {/* tags */}
+        <div className="flex flex-wrap gap-1.5 mb-4">
+          {item.tags.map((tag) => (
+            <span key={tag} className="inline-flex items-center gap-0.5 px-2 py-0.5 rounded text-[10px] font-medium" style={{ background: "#1a1a28", color: "#6b7280", border: "1px solid #2d2d42" }}>
+              <Hash size={8} />{tag}
+            </span>
+          ))}
+        </div>
+
+        {/* footer */}
+        <div className="flex items-center justify-between pt-3" style={{ borderTop: "1px solid #1f1f2e" }}>
+          <span className="text-[11px] flex items-center gap-1.5" style={{ color: "#6b7280" }}>
+            <Activity size={10} className="text-violet-400" />
+            {item.source}
+          </span>
+          <button className="flex items-center gap-1 text-[12px] font-semibold text-violet-400 hover:text-violet-300 transition-colors">
+            Read more <ChevronRight size={12} />
           </button>
         </div>
       </div>
-    </article>
+    </div>
   );
 }
 
-function NotificationToast({ item, onClose }: { item: NewsItem; onClose: () => void }) {
+function Toast({ item, onClose }: { item: NewsItem; onClose: () => void }) {
   useEffect(() => {
     const t = setTimeout(onClose, 6000);
     return () => clearTimeout(t);
   }, [onClose]);
 
   return (
-    <div className="animate-notification glass-bright rounded-2xl p-4 w-80 shadow-2xl shadow-black/50 flex gap-3 items-start pointer-events-auto">
+    <div
+      className="flex gap-3 items-start p-4 rounded-2xl w-80 pointer-events-auto shadow-2xl"
+      style={{
+        background: "rgba(17,17,26,0.97)",
+        border: "1px solid rgba(139,92,246,0.3)",
+        backdropFilter: "blur(30px)",
+        boxShadow: "0 20px 60px rgba(0,0,0,0.6), 0 0 0 1px rgba(139,92,246,0.1)",
+        animation: "notification-pop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards",
+      }}
+    >
       <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${item.imageGradient} flex-shrink-0 flex items-center justify-center`}>
-        <Bell size={16} className="text-white" />
+        <Bell size={15} className="text-white" />
       </div>
       <div className="flex-1 min-w-0">
-        <div className="flex items-center gap-2 mb-0.5">
+        <div className="flex items-center gap-1.5 mb-0.5">
           <span className="text-[10px] font-bold text-violet-400 uppercase tracking-widest">Claude Update</span>
-          <PriorityBadge priority={item.priority} />
+          <PriorityBadge p={item.priority} />
         </div>
-        <p className="text-xs font-semibold text-[#f1f0ff] leading-snug line-clamp-2">{item.title}</p>
-        <p className="text-[11px] text-[#6b7280] mt-0.5">Just now</p>
+        <p className="text-xs font-semibold leading-snug line-clamp-2" style={{ color: "#f1f0ff" }}>{item.title}</p>
+        <p className="text-[11px] mt-0.5" style={{ color: "#6b7280" }}>Just now</p>
       </div>
-      <button onClick={onClose} className="text-[#6b7280] hover:text-[#9ca3af] mt-0.5 flex-shrink-0">
+      <button onClick={onClose} className="flex-shrink-0 transition-colors" style={{ color: "#6b7280" }}
+        onMouseEnter={(e) => (e.currentTarget.style.color = "#9ca3af")}
+        onMouseLeave={(e) => (e.currentTarget.style.color = "#6b7280")}
+      >
         <X size={14} />
       </button>
     </div>
@@ -358,11 +390,10 @@ function NotificationToast({ item, onClose }: { item: NewsItem; onClose: () => v
 function SubscribePanel() {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
-  const [errorMsg, setErrorMsg] = useState("");
+  const [err, setErr] = useState("");
 
-  async function handleSubmit(e: React.FormEvent) {
+  async function submit(e: React.FormEvent) {
     e.preventDefault();
-    if (!email) return;
     setStatus("loading");
     try {
       const res = await fetch("/api/subscribe", {
@@ -371,111 +402,111 @@ function SubscribePanel() {
         body: JSON.stringify({ email }),
       });
       const data = await res.json();
-      if (!res.ok) throw new Error(data.error || "Failed to subscribe");
+      if (!res.ok) throw new Error(data.error || "Failed");
       setStatus("success");
       setEmail("");
-    } catch (err: unknown) {
+    } catch (e: unknown) {
       setStatus("error");
-      setErrorMsg(err instanceof Error ? err.message : "Something went wrong");
+      setErr(e instanceof Error ? e.message : "Something went wrong");
       setTimeout(() => setStatus("idle"), 3000);
     }
   }
 
   return (
-    <div className="glass-bright rounded-2xl p-6 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-violet-500/5 to-orange-500/5 pointer-events-none" />
+    <div className="rounded-2xl p-6 relative overflow-hidden" style={{ background: "#111118", border: "1px solid rgba(139,92,246,0.25)" }}>
+      <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse at top left, rgba(139,92,246,0.07) 0%, transparent 60%)" }} />
       <div className="relative">
-        <div className="flex items-center gap-2 mb-1">
-          <div className="w-7 h-7 rounded-lg bg-violet-500/20 flex items-center justify-center">
+        <div className="flex items-center gap-2 mb-2">
+          <div className="w-7 h-7 rounded-lg flex items-center justify-center" style={{ background: "rgba(139,92,246,0.15)" }}>
             <Bell size={13} className="text-violet-400" />
           </div>
-          <span className="text-xs font-bold text-violet-400 uppercase tracking-widest">Stay Updated</span>
+          <span className="text-[10px] font-bold text-violet-400 uppercase tracking-widest">Stay Updated</span>
         </div>
-        <h3 className="text-[18px] font-bold text-[#f1f0ff] mb-1" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+        <h3 className="text-lg font-bold mb-1" style={{ color: "#f1f0ff", fontFamily: "'Space Grotesk', sans-serif" }}>
           Get Claude News First
         </h3>
-        <p className="text-[13px] text-[#9ca3af] mb-5 leading-relaxed">
-          Instant email alerts the moment Anthropic drops new models, features, or research.
+        <p className="text-[13px] leading-relaxed mb-5" style={{ color: "#9ca3af" }}>
+          Instant email alerts when Anthropic drops new models, features, or research.
         </p>
 
         {status === "success" ? (
-          <div className="flex items-center gap-3 p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/20">
-            <CheckCircle size={20} className="text-emerald-400 flex-shrink-0" />
+          <div className="flex items-center gap-3 p-4 rounded-xl" style={{ background: "rgba(34,197,94,0.08)", border: "1px solid rgba(34,197,94,0.2)" }}>
+            <CheckCircle size={18} className="text-emerald-400 flex-shrink-0" />
             <div>
               <p className="text-sm font-semibold text-emerald-300">You&apos;re in!</p>
-              <p className="text-xs text-emerald-400/70">Check your inbox for a confirmation.</p>
+              <p className="text-xs" style={{ color: "rgba(52,211,153,0.7)" }}>Check your inbox.</p>
             </div>
           </div>
         ) : (
-          <form onSubmit={handleSubmit} className="space-y-3">
+          <form onSubmit={submit} className="space-y-3">
             <div className="relative">
-              <Mail size={14} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#6b7280]" />
+              <Mail size={13} className="absolute left-3.5 top-1/2 -translate-y-1/2" style={{ color: "#6b7280" }} />
               <input
                 type="email"
                 placeholder="you@example.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="w-full pl-10 pr-4 py-3 rounded-xl bg-[#0d0d14] border border-[#2d2d42] text-[#f1f0ff] text-sm placeholder-[#4b5563] focus:outline-none focus:border-violet-500/50 focus:ring-1 focus:ring-violet-500/20 transition-all"
+                className="w-full pl-10 pr-4 py-3 rounded-xl text-sm transition-all outline-none"
+                style={{
+                  background: "#0d0d14",
+                  border: "1px solid #2d2d42",
+                  color: "#f1f0ff",
+                }}
+                onFocus={(e) => (e.currentTarget.style.borderColor = "rgba(139,92,246,0.6)")}
+                onBlur={(e) => (e.currentTarget.style.borderColor = "#2d2d42")}
               />
             </div>
             <button
               type="submit"
               disabled={status === "loading"}
-              className="w-full py-3 rounded-xl font-semibold text-sm text-white transition-all duration-200"
+              className="w-full py-3 rounded-xl font-semibold text-sm text-white transition-all flex items-center justify-center gap-2"
               style={{
-                background:
-                  status === "loading"
-                    ? "rgba(139,92,246,0.5)"
-                    : "linear-gradient(135deg, #7c3aed, #8b5cf6, #a78bfa)",
-                boxShadow: status !== "loading" ? "0 0 20px rgba(139,92,246,0.3)" : "none",
+                background: status === "loading" ? "rgba(139,92,246,0.4)" : "linear-gradient(135deg, #6d28d9, #8b5cf6, #a78bfa)",
+                boxShadow: status !== "loading" ? "0 0 25px rgba(139,92,246,0.35)" : "none",
               }}
             >
               {status === "loading" ? (
-                <span className="flex items-center justify-center gap-2">
+                <>
                   <svg className="animate-spin w-4 h-4" viewBox="0 0 24 24" fill="none">
                     <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="3" strokeDasharray="40" strokeDashoffset="10" />
                   </svg>
                   Subscribing...
-                </span>
+                </>
               ) : (
-                <span className="flex items-center justify-center gap-2">
-                  <Zap size={14} />
-                  Subscribe for Free
-                </span>
+                <><Zap size={13} /> Subscribe Free</>
               )}
             </button>
             {status === "error" && (
-              <div className="flex items-center gap-2 text-xs text-red-400">
-                <AlertCircle size={12} />
-                {errorMsg}
-              </div>
+              <p className="flex items-center gap-1.5 text-xs text-red-400">
+                <AlertCircle size={11} />{err}
+              </p>
             )}
           </form>
         )}
-        <p className="text-[11px] text-[#4b5563] mt-3 text-center">No spam. Unsubscribe anytime. Powered by Resend.</p>
+        <p className="text-[11px] text-center mt-3" style={{ color: "#4b5563" }}>No spam · Unsubscribe anytime · Powered by Resend</p>
       </div>
     </div>
   );
 }
 
-function StatsBar() {
-  const stats = [
-    { label: "Today", value: "8", icon: <Activity size={14} className="text-violet-400" /> },
-    { label: "This Week", value: "34", icon: <TrendingUp size={14} className="text-orange-400" /> },
-    { label: "Models", value: "12", icon: <Cpu size={14} className="text-emerald-400" /> },
-    { label: "Subscribers", value: "24K+", icon: <Star size={14} className="text-amber-400" /> },
+function StatsGrid() {
+  const items = [
+    { label: "Today",       val: "8",   icon: <Activity size={14} className="text-violet-400" /> },
+    { label: "This Week",   val: "34",  icon: <TrendingUp size={14} className="text-orange-400" /> },
+    { label: "Models",      val: "12",  icon: <Cpu size={14} className="text-emerald-400" /> },
+    { label: "Subscribers", val: "24K+",icon: <Star size={14} className="text-amber-400" /> },
   ];
   return (
     <div className="grid grid-cols-2 gap-3">
-      {stats.map((s) => (
-        <div key={s.label} className="glass rounded-xl p-3.5 flex items-center gap-3">
-          <div className="w-8 h-8 rounded-lg bg-[#1a1a28] flex items-center justify-center flex-shrink-0">
+      {items.map((s) => (
+        <div key={s.label} className="rounded-xl p-3.5 flex items-center gap-3" style={{ background: "#111118", border: "1px solid #1f1f2e" }}>
+          <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: "#1a1a28" }}>
             {s.icon}
           </div>
           <div>
-            <div className="text-lg font-bold text-[#f1f0ff] leading-none">{s.value}</div>
-            <div className="text-[11px] text-[#6b7280] mt-0.5">{s.label}</div>
+            <div className="text-lg font-bold leading-none" style={{ color: "#f1f0ff" }}>{s.val}</div>
+            <div className="text-[11px] mt-0.5" style={{ color: "#6b7280" }}>{s.label}</div>
           </div>
         </div>
       ))}
@@ -483,24 +514,28 @@ function StatsBar() {
   );
 }
 
-function FilterBar({ active, onChange }: { active: string; onChange: (v: string) => void }) {
-  const filters = ["all", ...Object.keys(CATEGORY_CONFIG)] as const;
+function Filters({ active, onChange }: { active: string; onChange: (v: string) => void }) {
+  const all = ["all", ...Object.keys(CAT)] as const;
   return (
     <div className="flex items-center gap-2 flex-wrap">
-      <Filter size={13} className="text-[#6b7280]" />
-      {filters.map((f) => (
-        <button
-          key={f}
-          onClick={() => onChange(f)}
-          className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all duration-200 capitalize ${
-            active === f
-              ? "bg-violet-500/20 text-violet-300 border border-violet-500/30"
-              : "bg-[#111118] text-[#6b7280] border border-[#1f1f2e] hover:border-[#2d2d42] hover:text-[#9ca3af]"
-          }`}
-        >
-          {f === "all" ? "All Updates" : CATEGORY_CONFIG[f as keyof typeof CATEGORY_CONFIG].label}
-        </button>
-      ))}
+      <Filter size={12} style={{ color: "#6b7280" }} />
+      {all.map((f) => {
+        const isActive = active === f;
+        return (
+          <button
+            key={f}
+            onClick={() => onChange(f)}
+            className="px-3 py-1.5 rounded-lg text-xs font-semibold transition-all capitalize"
+            style={{
+              background: isActive ? "rgba(139,92,246,0.18)" : "#111118",
+              color: isActive ? "#c4b5fd" : "#6b7280",
+              border: isActive ? "1px solid rgba(139,92,246,0.4)" : "1px solid #1f1f2e",
+            }}
+          >
+            {f === "all" ? "All Updates" : CAT[f as keyof typeof CAT].label}
+          </button>
+        );
+      })}
     </div>
   );
 }
@@ -516,168 +551,165 @@ export default function Home() {
   useEffect(() => {
     const queue = NEWS_DATA.filter((n) => n.priority === "breaking" || n.priority === "high");
     let i = 0;
-    function showNext() {
+    function next() {
       if (i < queue.length) {
         const item = queue[i++];
-        setToasts((prev) => [...prev.slice(-2), item]);
+        setToasts((p) => [...p.slice(-2), item]);
         setNotifCount((c) => c + 1);
-        timerRef.current = setTimeout(showNext, 8000);
+        timerRef.current = setTimeout(next, 8000);
       }
     }
-    timerRef.current = setTimeout(showNext, 2500);
+    timerRef.current = setTimeout(next, 2500);
     return () => clearTimeout(timerRef.current);
   }, []);
 
-  function removeToast(id: number) {
-    setToasts((prev) => prev.filter((t) => t.id !== id));
-  }
-
-  const filtered = filter === "all" ? NEWS_DATA : NEWS_DATA.filter((n) => n.category === filter);
-  const featured = NEWS_DATA[0];
-  const grid = NEWS_DATA.slice(1);
+  const grid = filter === "all" ? NEWS_DATA.slice(1) : NEWS_DATA.filter((n) => n.category === filter);
 
   return (
-    <div className="min-h-screen" style={{ background: "var(--bg-primary)" }}>
-      {/* Bg glow orbs */}
-      <div className="glow-orb-purple" style={{ top: "-200px", left: "-200px" }} />
-      <div className="glow-orb-orange" style={{ bottom: "10%", right: "-100px" }} />
-      <div className="noise-overlay" />
+    <div className="min-h-screen relative" style={{ background: "#050508" }}>
+      {/* Glow orbs */}
+      <div className="orb-purple" style={{ top: "-300px", left: "-250px" }} />
+      <div className="orb-orange" style={{ bottom: "5%", right: "-150px" }} />
+      <div className="noise" />
 
-      {/* Header */}
-      <header className="sticky top-0 z-50 glass border-b border-[#1f1f2e]">
+      {/* ── Header ── */}
+      <header className="sticky top-0 z-50 glass" style={{ borderBottom: "1px solid #1f1f2e" }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
+          {/* Logo */}
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-violet-600 to-purple-800 flex items-center justify-center shadow-lg shadow-violet-900/30">
-              <Sparkles size={15} className="text-white" />
+            <div className="w-8 h-8 rounded-xl flex items-center justify-center" style={{ background: "linear-gradient(135deg, #6d28d9, #7c3aed)", boxShadow: "0 0 16px rgba(109,40,217,0.4)" }}>
+              <Sparkles size={14} className="text-white" />
             </div>
             <div>
-              <span className="text-sm font-bold text-[#f1f0ff] tracking-tight" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
-                Claude<span className="gradient-text-orange">Wire</span>
-              </span>
-              <div className="flex items-center gap-1.5 -mt-0.5">
-                <span className="live-dot scale-75" />
-                <span className="text-[10px] text-[#22c55e] font-semibold uppercase tracking-widest">Live</span>
+              <div className="text-sm font-bold leading-none" style={{ fontFamily: "'Space Grotesk', sans-serif", color: "#f1f0ff" }}>
+                Claude<span style={{ background: "linear-gradient(135deg, #fdba74, #f97316)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>Wire</span>
+              </div>
+              <div className="flex items-center gap-1.5 mt-0.5">
+                <span className="live-dot" style={{ width: 6, height: 6 }} />
+                <span className="text-[10px] font-bold uppercase tracking-widest text-emerald-400">Live</span>
               </div>
             </div>
           </div>
 
-          <nav className="hidden md:flex items-center gap-1">
-            {["Feed", "Models", "Research", "API", "About"].map((item) => (
-              <button key={item} className="px-3 py-1.5 rounded-lg text-xs font-medium text-[#9ca3af] hover:text-[#f1f0ff] hover:bg-[#1a1a28] transition-all">
-                {item}
-              </button>
+          {/* Nav */}
+          <nav className="hidden md:flex items-center gap-0.5">
+            {["Feed", "Models", "Research", "API", "About"].map((n) => (
+              <button key={n} className="px-3 py-1.5 rounded-lg text-xs font-medium transition-all" style={{ color: "#9ca3af" }}
+                onMouseEnter={(e) => { e.currentTarget.style.color = "#f1f0ff"; e.currentTarget.style.background = "#1a1a28"; }}
+                onMouseLeave={(e) => { e.currentTarget.style.color = "#9ca3af"; e.currentTarget.style.background = "transparent"; }}
+              >{n}</button>
             ))}
           </nav>
 
+          {/* Right */}
           <div className="flex items-center gap-3">
             <div className="relative">
-              <button className="w-8 h-8 rounded-lg bg-[#111118] border border-[#2d2d42] flex items-center justify-center text-[#9ca3af] hover:text-[#f1f0ff] transition-colors">
+              <button className="w-8 h-8 rounded-lg flex items-center justify-center transition-colors" style={{ background: "#111118", border: "1px solid #2d2d42", color: "#9ca3af" }}>
                 <Bell size={14} />
               </button>
-              {notifCount > 0 && <NotificationBadge count={notifCount} />}
+              {notifCount > 0 && <NotifBadge count={notifCount} />}
             </div>
-            <button
-              className="hidden sm:flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold text-white"
-              style={{ background: "linear-gradient(135deg, #7c3aed, #8b5cf6)" }}
-            >
-              <Mail size={12} />
-              Subscribe
+            <button className="hidden sm:flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold text-white" style={{ background: "linear-gradient(135deg, #6d28d9, #8b5cf6)" }}>
+              <Mail size={11} /> Subscribe
             </button>
           </div>
         </div>
       </header>
 
-      {/* Ticker */}
+      {/* ── Ticker ── */}
       <LiveTicker />
 
-      {/* Hero */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-10 pb-4">
-        <div className="mb-2">
-          <div className="flex items-center gap-2 mb-3">
-            <span className="flex items-center gap-2 px-3 py-1 rounded-full bg-violet-500/10 border border-violet-500/20 text-xs font-bold text-violet-400 uppercase tracking-widest">
-              <Radio size={10} />
-              AI Intelligence Feed
-            </span>
-            <span className="flex items-center gap-2 px-3 py-1 rounded-full bg-[#111118] border border-[#2d2d42] text-xs text-[#6b7280]">
-              Focused on Anthropic &amp; Claude
-            </span>
-          </div>
-          <h1
-            className="text-4xl sm:text-5xl font-black tracking-tight gradient-text-hero leading-none pb-1"
-            style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-          >
-            Claude News,<br />
-            <span className="text-[#f1f0ff]">Delivered Instantly.</span>
-          </h1>
-          <p className="text-[#9ca3af] text-base mt-3 max-w-lg leading-relaxed">
-            Every model release, API update, safety paper, and product launch from Anthropic — streamed to you in real time.
-          </p>
+      {/* ── Hero ── */}
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 pt-10 pb-6">
+        <div className="flex items-center gap-2 mb-4 flex-wrap">
+          <span className="flex items-center gap-2 px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest" style={{ background: "rgba(109,40,217,0.12)", border: "1px solid rgba(139,92,246,0.25)", color: "#a78bfa" }}>
+            <Radio size={10} /> AI Intelligence Feed
+          </span>
+          <span className="flex items-center gap-2 px-3 py-1 rounded-full text-[11px]" style={{ background: "#111118", border: "1px solid #1f1f2e", color: "#6b7280" }}>
+            Focused on Anthropic &amp; Claude
+          </span>
         </div>
+
+        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.05] mb-4" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+          <span style={{ background: "linear-gradient(135deg, #f1f0ff 0%, #c4b5fd 40%, #f97316 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
+            Claude News,
+          </span>
+          <br />
+          <span style={{ color: "#f1f0ff" }}>Delivered Instantly.</span>
+        </h1>
+
+        <p className="text-base leading-relaxed max-w-xl" style={{ color: "#9ca3af" }}>
+          Every model release, API update, safety paper, and product launch from Anthropic — streamed to you in real time.
+        </p>
       </div>
 
-      {/* Main */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 pb-20">
+      {/* ── Main grid ── */}
+      <main className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 pb-24">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-6">
-          {/* Left */}
+
+          {/* Left col */}
           <div className="space-y-6">
-            <FeaturedCard item={featured} />
-            <FilterBar active={filter} onChange={setFilter} />
+            <FeaturedCard item={NEWS_DATA[0]} />
+            <Filters active={filter} onChange={setFilter} />
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {(filter === "all" ? grid : filtered).map((item, i) => (
-                <NewsCard key={item.id} item={item} index={i} />
-              ))}
-              {filtered.length === 0 && (
-                <div className="col-span-2 py-16 text-center text-[#6b7280]">
-                  <Sparkles size={32} className="mx-auto mb-3 opacity-30" />
+              {grid.map((item, i) => <NewsCard key={item.id} item={item} index={i} />)}
+              {grid.length === 0 && (
+                <div className="col-span-2 py-20 text-center" style={{ color: "#4b5563" }}>
+                  <Sparkles size={30} className="mx-auto mb-3 opacity-30" />
                   <p className="text-sm">No updates in this category yet.</p>
                 </div>
               )}
             </div>
-            <div className="flex justify-center pt-4">
-              <button className="flex items-center gap-2 px-6 py-3 rounded-xl glass border border-[#2d2d42] text-sm font-semibold text-[#9ca3af] hover:text-[#f1f0ff] hover:border-violet-500/30 transition-all">
-                Load More Updates <ChevronRight size={15} />
+            <div className="flex justify-center pt-2">
+              <button className="flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold transition-all glass" style={{ color: "#9ca3af", border: "1px solid #2d2d42" }}>
+                Load More <ChevronRight size={14} />
               </button>
             </div>
           </div>
 
-          {/* Right sidebar */}
+          {/* Sidebar */}
           <div className="space-y-4">
             <SubscribePanel />
-            <StatsBar />
+            <StatsGrid />
 
             {/* Trending */}
-            <div className="glass rounded-2xl p-5">
-              <h3 className="text-xs font-bold text-[#6b7280] uppercase tracking-widest mb-3 flex items-center gap-2">
-                <TrendingUp size={12} /> Trending Topics
+            <div className="rounded-2xl p-5" style={{ background: "#111118", border: "1px solid #1f1f2e" }}>
+              <h3 className="text-[10px] font-bold uppercase tracking-widest mb-3 flex items-center gap-2" style={{ color: "#6b7280" }}>
+                <TrendingUp size={11} /> Trending Topics
               </h3>
               <div className="flex flex-wrap gap-2">
                 {["Claude 4", "Extended Thinking", "Computer Use", "Constitutional AI", "Projects", "Haiku", "Opus", "Safety"].map((tag) => (
-                  <button key={tag} className="flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-xs font-medium bg-[#111118] text-[#9ca3af] border border-[#2d2d42] hover:border-violet-500/30 hover:text-violet-300 transition-all">
-                    <Hash size={9} />
-                    {tag}
+                  <button
+                    key={tag}
+                    className="flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-[11px] font-medium transition-all"
+                    style={{ background: "#0d0d14", color: "#9ca3af", border: "1px solid #2d2d42" }}
+                    onMouseEnter={(e) => { e.currentTarget.style.borderColor = "rgba(139,92,246,0.4)"; e.currentTarget.style.color = "#c4b5fd"; }}
+                    onMouseLeave={(e) => { e.currentTarget.style.borderColor = "#2d2d42"; e.currentTarget.style.color = "#9ca3af"; }}
+                  >
+                    <Hash size={9} />{tag}
                   </button>
                 ))}
               </div>
             </div>
 
             {/* Sources */}
-            <div className="glass rounded-2xl p-5">
-              <h3 className="text-xs font-bold text-[#6b7280] uppercase tracking-widest mb-3 flex items-center gap-2">
-                <ExternalLink size={12} /> Sources
+            <div className="rounded-2xl p-5" style={{ background: "#111118", border: "1px solid #1f1f2e" }}>
+              <h3 className="text-[10px] font-bold uppercase tracking-widest mb-3 flex items-center gap-2" style={{ color: "#6b7280" }}>
+                <ExternalLink size={11} /> Sources
               </h3>
-              <div className="space-y-2">
+              <div className="divide-y" style={{ borderColor: "#1f1f2e" }}>
                 {[
-                  { name: "Anthropic Blog", url: "anthropic.com/blog", count: 12 },
-                  { name: "Anthropic Research", url: "anthropic.com/research", count: 8 },
-                  { name: "Claude Docs", url: "docs.anthropic.com", count: 15 },
-                  { name: "Claude.ai", url: "claude.ai", count: 5 },
+                  { name: "Anthropic Blog",     url: "anthropic.com/blog",     count: 12 },
+                  { name: "Anthropic Research",  url: "anthropic.com/research", count: 8  },
+                  { name: "Claude Docs",         url: "docs.anthropic.com",     count: 15 },
+                  { name: "Claude.ai",           url: "claude.ai",              count: 5  },
                 ].map((src) => (
-                  <div key={src.name} className="flex items-center justify-between py-2 border-b border-[#1f1f2e] last:border-0">
+                  <div key={src.name} className="flex items-center justify-between py-2.5">
                     <div>
-                      <p className="text-xs font-semibold text-[#9ca3af]">{src.name}</p>
-                      <p className="text-[10px] text-[#4b5563]">{src.url}</p>
+                      <p className="text-xs font-semibold" style={{ color: "#9ca3af" }}>{src.name}</p>
+                      <p className="text-[10px]" style={{ color: "#4b5563" }}>{src.url}</p>
                     </div>
-                    <span className="text-[10px] font-bold text-violet-400 bg-violet-500/10 px-2 py-0.5 rounded-full">
+                    <span className="text-[10px] font-bold px-2 py-0.5 rounded-full" style={{ color: "#a78bfa", background: "rgba(139,92,246,0.12)" }}>
                       {src.count}
                     </span>
                   </div>
@@ -688,10 +720,10 @@ export default function Home() {
         </div>
       </main>
 
-      {/* Toast notifications */}
+      {/* ── Toast notifications ── */}
       <div className="fixed bottom-5 right-5 z-50 flex flex-col gap-3 pointer-events-none">
-        {toasts.map((toast) => (
-          <NotificationToast key={toast.id} item={toast} onClose={() => removeToast(toast.id)} />
+        {toasts.map((t) => (
+          <Toast key={t.id} item={t} onClose={() => setToasts((p) => p.filter((x) => x.id !== t.id))} />
         ))}
       </div>
     </div>
