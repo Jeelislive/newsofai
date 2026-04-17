@@ -436,112 +436,95 @@ export default function Home() {
       </div>
 
       {/* ── Content ── */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 pb-24">
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-6">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 pb-24 space-y-6">
 
-          {/* Left */}
-          <div className="space-y-5">
-            {error && (
-              <div className="flex items-center gap-3 p-4 rounded-xl bg-[#faf9f5] border border-[#f0eee6] text-[#5e5d59]">
-                <AlertTriangle size={16} className="text-[#c96442] flex-shrink-0" />
-                <p className="text-sm">Could not fetch latest news. <button onClick={fetchNews} className="text-[#c96442] underline">Try again</button></p>
-              </div>
-            )}
-
-            {!loading && featured && <FeaturedCard item={featured} />}
-
-            <Filters active={filter} onChange={setFilter} />
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {loading
-                ? Array.from({ length: 6 }).map((_, i) => <CardSkeleton key={i} />)
-                : grid.map((item, i) => <NewsCard key={item.id} item={item} index={i} />)
-              }
-              {!loading && filtered.length === 0 && !error && (
-                <div className="col-span-2 py-16 text-center text-[#87867f]">
-                  <Activity size={24} className="mx-auto mb-3 opacity-30" />
-                  <p className="text-sm">No stories in this category right now.</p>
-                </div>
-              )}
-            </div>
-
-            {!loading && filtered.length > 0 && (
-              <div className="flex justify-center pt-2">
-                <button onClick={fetchNews}
-                  className="flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-medium text-[#5e5d59] hover:text-[#141413] bg-[#faf9f5] border border-[#f0eee6] hover:border-[#e8e6dc] transition-all">
-                  <RefreshCw size={13} /> Refresh Feed
-                </button>
-              </div>
-            )}
+        {/* Error */}
+        {error && (
+          <div className="flex items-center gap-3 p-4 rounded-xl bg-[#faf9f5] border border-[#f0eee6] text-[#5e5d59]">
+            <AlertTriangle size={16} className="text-[#c96442] flex-shrink-0" />
+            <p className="text-sm">Could not fetch latest news. <button onClick={fetchNews} className="text-[#c96442] underline">Try again</button></p>
           </div>
+        )}
 
-          {/* Sidebar */}
-          <div className="space-y-4">
-            <SubscribePanel />
+        {/* Featured — full width */}
+        {!loading && featured && <FeaturedCard item={featured} />}
 
-            {/* Source breakdown */}
-            <div className="rounded-xl p-5 bg-[#faf9f5] border border-[#f0eee6]"
-              style={{ boxShadow: "rgba(0,0,0,0.03) 0px 2px 12px" }}>
-              <h3 className="text-[10px] font-bold uppercase tracking-widest mb-4 flex items-center gap-2 text-[#87867f]">
-                <ExternalLink size={11} /> Live Sources
-              </h3>
-              <div className="divide-y divide-[#f0eee6]">
-                {[
-                  { icon: "✦", name: "Anthropic Blog",    sub: "anthropic.com/news" },
-                  { icon: "🟠", name: "Hacker News",       sub: "hn.algolia.com"     },
-                  { icon: "⚫", name: "GitHub",            sub: "github.com/anthropics"},
-                  { icon: "🔴", name: "Reddit r/ClaudeAI", sub: "reddit.com/r/ClaudeAI"},
-                ].map((src) => {
-                  const count = news.filter((n) => {
-                    if (src.icon === "✦") return n.source === "anthropic";
-                    if (src.icon === "🟠") return n.source === "hackernews";
-                    if (src.icon === "⚫") return n.source === "github";
-                    return n.source === "reddit";
-                  }).length;
+        {/* Source counts strip */}
+        {!loading && news.length > 0 && (
+          <div className="flex flex-wrap items-center gap-3 py-3 border-y border-[#f0eee6]">
+            <span className="text-[10px] font-bold uppercase tracking-widest text-[#87867f] flex items-center gap-1.5 mr-1">
+              <ExternalLink size={10} /> Sources
+            </span>
+            {([
+              { icon: "✦", src: "anthropic" as const, label: "Anthropic" },
+              { icon: "🟠", src: "hackernews" as const, label: "Hacker News" },
+              { icon: "⚫", src: "github" as const, label: "GitHub" },
+              { icon: "🔴", src: "reddit" as const, label: "Reddit" },
+            ]).map((s) => {
+              const count = news.filter((n) => n.source === s.src).length;
+              if (!count) return null;
+              return (
+                <span key={s.src} className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#faf9f5] border border-[#f0eee6] text-xs text-[#5e5d59]">
+                  {s.icon} {s.label}
+                  <span className="font-bold text-[#c96442]">{count}</span>
+                </span>
+              );
+            })}
+            <span className="ml-auto text-[11px] text-[#87867f]">{news.length} stories fetched</span>
+          </div>
+        )}
+
+        {/* Filters + category tags */}
+        <div className="flex flex-wrap items-center gap-3">
+          <Filters active={filter} onChange={setFilter} />
+          {news.length > 0 && (
+            <div className="flex flex-wrap gap-1.5 ml-2 pl-2 border-l border-[#f0eee6]">
+              {(["model","api","research","safety","feature","product","general"] as const)
+                .filter((cat) => news.some((n) => n.category === cat))
+                .map((cat) => {
+                  const count = news.filter((n) => n.category === cat).length;
                   return (
-                    <div key={src.name} className="flex items-center justify-between py-3">
-                      <div className="flex items-center gap-2.5">
-                        <span className="text-sm">{src.icon}</span>
-                        <div>
-                          <p className="text-xs font-medium text-[#4d4c48]">{src.name}</p>
-                          <p className="text-[10px] text-[#87867f]">{src.sub}</p>
-                        </div>
-                      </div>
-                      {loading
-                        ? <div className="h-4 w-6 rounded bg-[#f0eee6] animate-pulse" />
-                        : <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#f5ece6] text-[#c96442]">{count}</span>
-                      }
-                    </div>
+                    <button key={cat} onClick={() => setFilter(cat)}
+                      className="flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-[11px] font-medium bg-[#f5f4ed] text-[#5e5d59] border border-[#f0eee6] hover:border-[#e8e6dc] hover:text-[#c96442] transition-all">
+                      <Hash size={8} />{CAT[cat]?.label ?? cat}
+                      <span className="text-[#b0aea5] ml-0.5">{count}</span>
+                    </button>
                   );
                 })}
-              </div>
             </div>
-
-            {/* Trending tags from real data */}
-            {news.length > 0 && (
-              <div className="rounded-xl p-5 bg-[#faf9f5] border border-[#f0eee6]"
-                style={{ boxShadow: "rgba(0,0,0,0.03) 0px 2px 12px" }}>
-                <h3 className="text-[10px] font-bold uppercase tracking-widest mb-3 flex items-center gap-2 text-[#87867f]">
-                  <TrendingUp size={11} /> Categories in Feed
-                </h3>
-                <div className="flex flex-wrap gap-2">
-                  {(["model","api","research","safety","feature","product","general"] as const)
-                    .filter((cat) => news.some((n) => n.category === cat))
-                    .map((cat) => {
-                      const count = news.filter((n) => n.category === cat).length;
-                      return (
-                        <button key={cat} onClick={() => setFilter(cat)}
-                          className="flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-[11px] font-medium bg-[#f5f4ed] text-[#5e5d59] border border-[#f0eee6] hover:border-[#e8e6dc] hover:text-[#c96442] transition-all">
-                          <Hash size={8} />{CAT[cat]?.label ?? cat}
-                          <span className="text-[#b0aea5]">{count}</span>
-                        </button>
-                      );
-                    })}
-                </div>
-              </div>
-            )}
-          </div>
+          )}
         </div>
+
+        {/* News grid — full width 3-col */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {loading
+            ? Array.from({ length: 9 }).map((_, i) => <CardSkeleton key={i} />)
+            : grid.map((item, i) => <NewsCard key={item.id} item={item} index={i} />)
+          }
+          {!loading && filtered.length === 0 && !error && (
+            <div className="col-span-3 py-16 text-center text-[#87867f]">
+              <Activity size={24} className="mx-auto mb-3 opacity-30" />
+              <p className="text-sm">No stories in this category right now.</p>
+            </div>
+          )}
+        </div>
+
+        {/* Subscribe inline banner */}
+        {!loading && news.length > 0 && (
+          <div className="rounded-xl overflow-hidden">
+            <SubscribePanel />
+          </div>
+        )}
+
+        {/* Refresh */}
+        {!loading && filtered.length > 0 && (
+          <div className="flex justify-center pt-2">
+            <button onClick={fetchNews}
+              className="flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-medium text-[#5e5d59] hover:text-[#141413] bg-[#faf9f5] border border-[#f0eee6] hover:border-[#e8e6dc] transition-all">
+              <RefreshCw size={13} /> Refresh Feed
+            </button>
+          </div>
+        )}
       </main>
 
       {/* ── Toasts ── */}
